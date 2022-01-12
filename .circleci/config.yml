@@ -36,9 +36,9 @@ jobs:
       - aws-s3/sync:
           from: build
           to: "s3://react-app-from-ekpono/"
-          aws-access-key-id: "ZDmOKPcfX6+vE7mqXwsTjGcJTGdFC6lk1sU/7lPk"
-          aws-region: "us-east-2"
-          aws-secret-access-key: "AKIAXXFWKQG52J3QVFNC"
+          aws-access-key-id: ${AWS_ACCESS_KEY_ID}
+          aws-region: ${AWS_REGION}
+          aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
