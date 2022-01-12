@@ -14,25 +14,11 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: yarn
+      - run: npm
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-  # run eslint!
-  eslint:
-    docker:
-      - image: circleci/node:8.10
-    working_directory: ~/flash-web-front
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: yarn lint
 
   # deploy all
   deploy:
@@ -49,7 +35,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Parcel build
-          command: yarn build
+          command: npm build
       - aws-s3/sync:
           from: ~/flash-web-front/dist
           to: '${AWS_S3_WEB_BUCKET}'
