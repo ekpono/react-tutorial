@@ -5,7 +5,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:12.9.1-browsers
-      - image: python3-pip
+      - image: python
 
     working_directory: ~/repo
 
