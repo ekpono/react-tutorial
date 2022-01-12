@@ -54,5 +54,5 @@ jobs: # Define the build and deploy jobs
           name: Deploy
             command: |
               if [ $CIRCLE_BRANCH = 'circleci-project-setup' ]; then
-                aws s3 sync build s3://react-app-from-ekpono --delete --exact-timestamps;
+                aws s3 sync dist/angular-material-starter/ s3://angular-material-starter-bucket/ --delete --exact-timestamps;
               fi
