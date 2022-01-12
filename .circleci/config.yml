@@ -44,7 +44,7 @@ jobs: # Define the build and deploy jobs
     steps:
       - checkout
       - aws-s3/sync:
-          from: bucket
+          from: build
           to: "s3://react-app-from-ekpono"
           arguments: | # Optional arguments
             --acl public-read \
