@@ -35,7 +35,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Parcel build
-          command: npm build
+          command: npm run build
       - aws-s3/sync:
           from: ~/flash-web-front/dist
           to: '${AWS_S3_WEB_BUCKET}'
