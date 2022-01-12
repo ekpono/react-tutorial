@@ -37,4 +37,4 @@ jobs:
           command: npm run build
       - aws-s3/sync:
           from: ~/flash-web-front/dist
-          to: '${AWS_S3_WEB_BUCKET}'
+          to: "s3://react-app-from-ekpono/"
