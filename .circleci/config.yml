@@ -6,9 +6,17 @@ jobs:
       - image: circleci/node:12-browsers
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
       - run:
           name: Install dependencies
           command: npm install
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       - run:
           name: Build
           command: |
@@ -22,8 +30,7 @@ jobs:
   deploy:
     working_directory: ~/repo
     docker:
-      #- image: innovatorjapan/awscli:latest
-      - image: circleci/aws-cli@2.0.6
+      - image: innovatorjapan/awscli:latest
     steps:
       - attach_workspace:
           at: .
